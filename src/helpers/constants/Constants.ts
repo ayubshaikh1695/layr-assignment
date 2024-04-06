@@ -9,9 +9,14 @@ export const ALL_PRODUCTS_URL = 'https://fakestoreapi.com/products';
 export const PRODUCT_CATEGORIES_URL =
   'https://fakestoreapi.com/products/categories';
 
+export const SOMETHING_WENT_WRONG_MESSAGE = 'Something went wrong';
+
 export const ERROR_FETCHING_PRODUCTS_MESSAGE = 'Error fetching products';
 
 export const ERROR_FETCHING_CATEGORIES_MESSAGE = 'Error fetching categories';
+
+export const ERROR_FETCHING_PRODUCT_DETAILS_MESSAGE =
+  'Error fetching product details';
 
 export const HOME_PAGE_HEADING = 'Product Catalog Display';
 

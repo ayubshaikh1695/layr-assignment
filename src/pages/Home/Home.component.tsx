@@ -3,7 +3,7 @@ import { fetchCategories, fetchProducts } from '../../helpers/utils/APIUtils';
 import { useAppContext } from '../../context/AppContext/AppContext.component';
 import {
   DEFAULT_SORT_OPTION,
-  ERROR_FETCHING_PRODUCTS_MESSAGE,
+  SOMETHING_WENT_WRONG_MESSAGE,
 } from '../../helpers/constants/Constants';
 import Spinner from '../../components/Spinner/Spinner.component';
 import { isEmpty } from '../../helpers/utils/CommonUtils';
@@ -29,46 +29,36 @@ const Home: React.FC = () => {
 
   // ---------- Lifecycle ----------
   useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const { categories, error } = await fetchCategories();
+    if (isEmpty(allProducts) || isEmpty(productCategories)) {
+      const initializeState = async () => {
+        try {
+          updateAppState({ loading: true });
+          const productsRes = await fetchProducts();
+          const categoriesRes = await fetchCategories();
+          updateAppState({ loading: false });
 
-        if (!error && !isEmpty(categories)) {
-          updateAppState({ productCategories: categories });
+          const errorMsg = productsRes.error || categoriesRes.error;
+          if (errorMsg) {
+            setErrorMessage(errorMsg);
+          } else {
+            setErrorMessage(null);
+            updateAppState({
+              allProducts: productsRes.products,
+              productCategories: categoriesRes.categories,
+              selectedFilters: {
+                ...appState.selectedFilters,
+                priceRange: productsRes.priceRange,
+                selectedPriceRange: productsRes.priceRange.max,
+              },
+            });
+          }
+        } catch (error) {
+          setErrorMessage(SOMETHING_WENT_WRONG_MESSAGE);
         }
-      } catch (error) {
-        console.error(error);
-      }
-    };
+      };
 
-    const getProducts = async () => {
-      try {
-        updateAppState({ loading: true });
-        const { products, priceRange, error } = await fetchProducts();
-        updateAppState({ loading: false });
-
-        if (error) {
-          setErrorMessage(error);
-        } else {
-          setErrorMessage(null);
-          updateAppState({
-            allProducts: products,
-            selectedFilters: {
-              ...appState.selectedFilters,
-              priceRange,
-              selectedPriceRange: priceRange.max,
-            },
-          });
-          getCategories();
-        }
-      } catch (error) {
-        setErrorMessage(ERROR_FETCHING_PRODUCTS_MESSAGE);
-      } finally {
-        updateAppState({ loading: false });
-      }
-    };
-
-    getProducts();
+      initializeState();
+    }
   }, []);
 
   // ---------- Constants ----------

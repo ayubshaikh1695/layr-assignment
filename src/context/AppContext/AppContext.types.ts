@@ -61,3 +61,13 @@ export type ModifiedProductsResponse = {
   priceRange: PriceRange;
   error?: string;
 };
+
+export type CategoriesResponse = {
+  categories: string[];
+  error?: string;
+};
+
+export type ProductDetailsResponse = {
+  productDetails: ProductRaw | null;
+  error?: string;
+};

@@ -1,7 +1,12 @@
-import { ModifiedProductsResponse } from '../../context/AppContext/AppContext.types';
+import {
+  CategoriesResponse,
+  ModifiedProductsResponse,
+  ProductDetailsResponse,
+} from '../../context/AppContext/AppContext.types';
 import {
   ALL_PRODUCTS_URL,
   ERROR_FETCHING_CATEGORIES_MESSAGE,
+  ERROR_FETCHING_PRODUCT_DETAILS_MESSAGE,
   ERROR_FETCHING_PRODUCTS_MESSAGE,
   PRODUCT_CATEGORIES_URL,
 } from '../constants/Constants';
@@ -26,7 +31,7 @@ export const fetchProducts = async (): Promise<ModifiedProductsResponse> => {
   }
 };
 
-export const fetchCategories = async (): Promise<any> => {
+export const fetchCategories = async (): Promise<CategoriesResponse> => {
   try {
     const response = await fetch(PRODUCT_CATEGORIES_URL);
     if (!response.ok) {
@@ -37,5 +42,26 @@ export const fetchCategories = async (): Promise<any> => {
   } catch (error) {
     console.error(`${ERROR_FETCHING_CATEGORIES_MESSAGE}:`, error);
     return { error: ERROR_FETCHING_CATEGORIES_MESSAGE, categories: [] };
+  }
+};
+
+export const fetchSingleProduct = async (
+  productId: string,
+): Promise<ProductDetailsResponse> => {
+  try {
+    const response = await fetch(`${ALL_PRODUCTS_URL}/${productId}`);
+    if (!response.ok) {
+      throw new Error(
+        `Failed to fetch product details. Status: ${response.status}`,
+      );
+    }
+    const data = await response.json();
+    return { productDetails: data };
+  } catch (error) {
+    console.error(`${ERROR_FETCHING_PRODUCT_DETAILS_MESSAGE}:`, error);
+    return {
+      error: ERROR_FETCHING_PRODUCT_DETAILS_MESSAGE,
+      productDetails: null,
+    };
   }
 };
