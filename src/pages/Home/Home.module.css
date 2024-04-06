@@ -1,0 +1,27 @@
+.fullViewContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.errorMessage {
+  font-size: 20px;
+}
+
+.mainContentContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.productListWrapper {
+  padding: 0 24px 24px;
+}
+
+.noProductsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 72px);
+}

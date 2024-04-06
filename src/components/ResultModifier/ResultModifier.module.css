@@ -1,0 +1,51 @@
+.wrapper {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  gap: 12px;
+  height: 60px;
+  margin-bottom: 12px;
+  background-color: #fff;
+  box-shadow: 0 -6px 10px 5px rgba(0, 0, 0, 0.5);
+}
+
+.heading {
+  margin: 0;
+}
+
+.modifiersContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.buttonContainer {
+  position: relative;
+}
+
+.buttonContainer > button {
+  min-width: 100px;
+  height: 30px;
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.buttonContainer > button:hover {
+  background-color: #444;
+}
+
+@media only screen and (max-width: 768px) {
+  .heading {
+    display: none;
+  }
+}

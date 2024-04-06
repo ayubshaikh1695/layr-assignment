@@ -1,0 +1,37 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  height: 100%;
+}
+
+.label {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.sortOption {
+  cursor: pointer;
+  margin: 2px 0;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease;
+}
+
+.sortOption:hover {
+  background-color: #f0f0f0;
+}
+
+.selectedOption {
+  background-color: #e0e0e0;
+}
+
+.selectedOption:hover {
+  background-color: #e0e0e0;
+  transition: none;
+}
+
+.sortOption:hover,
+.selectedOption {
+  border-radius: 3px;
+}
