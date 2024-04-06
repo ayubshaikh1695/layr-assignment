@@ -73,7 +73,7 @@ const ProductDetails = () => {
                 className={styles.goBackButton}
                 onClick={handleBackButton}
               >
-                &#x21e6;&nbsp;Go Back
+                &#x21e6;&nbsp;Back to Catalog
               </button>
             </div>
             <div className={styles.product}>
