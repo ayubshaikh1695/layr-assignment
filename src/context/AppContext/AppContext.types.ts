@@ -49,6 +49,10 @@ export type AppState = {
     priceRange: PriceRange;
     selectedPriceRange: number;
   };
+  pagination: {
+    currentPage: number;
+    lastPage: number;
+  };
 };
 
 export type AppContextValue = {

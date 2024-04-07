@@ -54,3 +54,6 @@ export const SORT_BY_OPTIONS: SelectedSorting[] = [
     order: SortOrder.descending,
   },
 ];
+
+export const PAGINATION_FIXED_FIRST_PAGE = 1;
+export const PAGINATION_FIXED_LAST_PAGE = 4;

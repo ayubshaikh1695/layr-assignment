@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useMemo, useState } from 'react';
 import { AppContextProps, AppContextValue, AppState } from './AppContext.types';
-import { DEFAULT_SORT_OPTION } from '../../helpers/constants/Constants';
+import {
+  DEFAULT_SORT_OPTION,
+  PAGINATION_FIXED_FIRST_PAGE,
+  PAGINATION_FIXED_LAST_PAGE,
+} from '../../helpers/constants/Constants';
 
 // AppContext context creation
 const AppContext = createContext<AppContextValue | null>(null);
@@ -15,6 +19,10 @@ const INITIAL_STATE: AppState = {
     categories: [],
     priceRange: { min: 0, max: 0 },
     selectedPriceRange: 0,
+  },
+  pagination: {
+    currentPage: PAGINATION_FIXED_FIRST_PAGE,
+    lastPage: PAGINATION_FIXED_LAST_PAGE,
   },
 };
 
